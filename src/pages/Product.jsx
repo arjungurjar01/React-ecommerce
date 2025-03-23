@@ -28,7 +28,7 @@ function Product() {
   return productData ? (
     <div className='border-t transition-opacity ease-in duration-500 opacity-100'>
       {/* product data */}
-      <div className='flex gap-12 sm:gap-12 flex-col sm:flex-row'>
+      <div className='flex pt-2 gap-12 sm:gap-12 flex-col sm:flex-row'>
 
       {/* ------ product images ------- */}
 
@@ -36,14 +36,14 @@ function Product() {
            <div className='flex sm:flex-col overflow-x-auto sm:overflow-x-scroll justify-between sm:justify-normal sm:w-[18.7%] w-full'>
             {
               productData.image.map((item,index)=>(
-                <img onClick={()=>setImage(item)} src={item} key={index} className='cursor-pointer sm:mb-3 sm:w-full w-[24%] flex-shrink-0' alt={item.name} />
+                <img onClick={()=>setImage(item)} src={item} key={index} className='cursor-pointer sm:mb-3 sm:w-full w-[24%] flex-shrink-0 rounded-xl border-2 border-yellow-300' alt={item.name} />
               
               ))
             }
            </div>
 
-           <div className='w-full sm:w-[80%]'>
-            <img src={image}  className='w-full h-auto' alt="" />
+           <div className='w-full sm:w-[80%] bg-red-00 '>
+            <img src={image}  className='w-full h-auto rounded-xl border-2 border-yellow-300' alt="" />
            </div>
 
       </div>
