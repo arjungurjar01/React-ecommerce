@@ -1,16 +1,30 @@
 import React, { useContext, useState } from 'react'
 import { assets } from '../assets/assets.js';
-import {Link, NavLink } from 'react-router-dom';
+import {Link, NavLink, useNavigate } from 'react-router-dom';
 import { FiSearch } from "react-icons/fi";
 import { CgProfile } from "react-icons/cg";
 import { SlHandbag } from "react-icons/sl";
 import { IoMenu } from "react-icons/io5";
 import { IoArrowBackSharp } from "react-icons/io5";
 import { ShopContext } from '../context/ShopContext.jsx';
+import { useAuth } from '../context/AuthContext.jsx';
 
 function Navbar() {
     const [visible,setVisible] = useState(false);
     const {setShowSearch,getCartCount} = useContext(ShopContext)
+    const {session} = useAuth();
+    const user = session?.user ;
+    const avatar = user?.user_metadata?.avatar_url ;
+    const firstLetter =
+    user?.user_metadata?.full_name?.charAt(0).toUpperCase() ||
+    user?.email?.charAt(0).toUpperCase() ;
+    
+
+
+
+    
+
+    // console.log(session.user?.user_metadata?.avatar_url)
   return (
     <div className='flex items-center justify-between py-5 font-medium'>
        <Link to={'/'}><img src={assets.logo} className='w-[33%]   ' alt="logo" /> </Link> 
@@ -40,13 +54,14 @@ function Navbar() {
        <div className='flex items-center gap-6'>
         <FiSearch onClick={()=>setShowSearch(true)} className='text-2xl  cursor-pointer' />
 
-        <div className='group relative'>
-       <Link to={'/login'}>  <CgProfile className='text-2xl cursor-pointer' /> </Link>
-        <div className='group-hover:block hidden absolute dropdown-menu right-0 pt-4'>
-            <div className='flex flex-col gap-2 w-36 py-3 px-5 bg-slate-100 text-gray-500 rounded'>
-                <p className='cursor-pointer hover:text-black '>My Profile</p>
-                <p className='cursor-pointer hover:text-black '>Orders</p>
-                <p className='cursor-pointer hover:text-black '>Logout</p>
+        <div className='group relative '>
+       <Link to={'/profile'}>  {
+        !avatar ? ( firstLetter && (<p className='bg-yellow-300 text-lg font-normal rounded-full  px-2 lg:px-3 lg:py-1'>{firstLetter}</p>) || <CgProfile className='text-2xl text-black' />)  : <img className='rounded-full w-24 sm:w-auto md:w-auto lg:w-10 object-cover' src={`${session?.user?.user_metadata?.avatar_url}`} alt="avatar" />
+       } </Link>
+
+        <div className='group-hover:block hidden absolute dropdown-menu right-0 pt-4 ml-4'>
+            <div className='flex flex-col gap-2 w-36 py-3 px-5 ml-4 bg-slate-100 text-gray-500 rounded'>
+              account
             </div>
         </div>
         </div>

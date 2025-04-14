@@ -3,14 +3,17 @@ import { useParams } from 'react-router-dom'
 import { ShopContext } from '../context/ShopContext';
 import { FaStar } from "react-icons/fa";
 import { FaStarHalfStroke } from "react-icons/fa6";
-import { use } from 'react';
+
 import RelatedProducts from '../components/RelatedProducts';
+import ProductReview from '../components/ProductReview';
 function Product() {
   const {productId} = useParams();
   const {products,currency,addToCart} = useContext(ShopContext);
   const[productData,setProductData]=useState(false);
   const[image,setImage] = useState('');
   const[size,setSize] = useState('');
+  const [activeTab, setActiveTab] = useState("description");
+
 
   const fetchProductData = async()=>{
          products.map((item)=>{
@@ -88,12 +91,25 @@ function Product() {
       {/* Description and review section */}
       <div className='mt-20'>
         <div className='flex'>
-          <b className='border px-5 py-3 text-sm'>Description</b>
-          <p className='border px-5 py-3 text-sm'>Reviews(154)</p>
+          <p className={`border px-5 py-3 text cursor-pointer ${activeTab === 'description' ? 'font-semibold' :'text-md'}`} onClick={()=>setActiveTab('description')}>Description</p>
+          <p className={`border px-5 py-3 text cursor-pointer ${activeTab === 'reviews' ? 'font-semibold' :'text-md'}`} onClick={()=>setActiveTab('reviews')}> Reviews </p> 
         </div>
         <div className='flex flex-col text-gray-500 gap-4  py-4 text-sm'>
+       
+       {
+        activeTab === 'reviews' && (
+          <div className=''>
+          <ProductReview productId={productId} />
+        </div>
+        )
+       }
+       
+
+
+
+
          {/* section of description */}
-    <div className="bg-gradient-to-r from-yellow-50 via-gray-50 to-orange-50 py-10 px-6 lg:px-16">
+    {activeTab === 'description' && <div className="bg-gradient-to-r from-yellow-50 via-gray-50 to-orange-50 py-10 px-6 lg:px-16">
       <div className="max-w-5xl mx-auto text-center">
         <h1 className="text-4xl font-bold text-gray-700 mb-4">Welcome to VillageVeda</h1>
         <p className="text-lg text-gray-700 mb-8">
@@ -126,7 +142,7 @@ function Product() {
           Rediscover the taste and health benefits of natural, unadulterated products with VillageVeda – a brand that celebrates the essence of Indian village life.
         </p>
       </div>
-    </div>
+    </div>}
    
     
         </div>
