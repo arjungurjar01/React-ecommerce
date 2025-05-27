@@ -143,7 +143,7 @@ function ProductReview({productId}) {
  const handleAddReviews = async({comment,rating}) => {
     if (!session) return alert("Please login to submit a review");
 
-    const res = await fetch(`${VITE_BACKEND_URL}/api/v1/reviews/${productId}`,{
+    const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/v1/reviews/${productId}`,{
       method:'POST',
       headers:{
         'Content-Type': 'application/json',
@@ -172,7 +172,7 @@ function ProductReview({productId}) {
   //fetch all reviews
   const fetchAllReviews = async()=>{
     try {
-      const response = await fetch(`${VITE_BACKEND_URL}/api/v1/reviews/${productId}`);
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/v1/reviews/${productId}`);
     const data = await response.json();
     console.log('fetch all data',data)
     setReviews(data.reviews || []);
