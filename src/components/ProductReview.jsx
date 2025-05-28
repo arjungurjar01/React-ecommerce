@@ -149,11 +149,13 @@ function ProductReview({productId}) {
         'Content-Type': 'application/json',
         'Authorization' : `Bearer ${token}`
       },
+      credentials: 'include' ,
       body : JSON.stringify({
           comment,
           rating ,
           userEmail: user.email,
-          username: user.user_metadata?.full_name || user.user_metadata.name || formatedUserName}) 
+          username: user.user_metadata?.full_name || user.user_metadata.name || formatedUserName
+        })
     });
 
     if (res.ok) {
