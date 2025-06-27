@@ -7,10 +7,11 @@ function ProductList({products}) {
           {products.map((item, index) => (
             <ProductItem
               key={index}
-              id={item._id}
+              _id={item._id}
               name={item.name}
               price={item.price}
               image={item.image}
+              product={item}
             />
           ))}
         </div>

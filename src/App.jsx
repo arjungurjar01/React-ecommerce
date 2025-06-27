@@ -17,6 +17,7 @@ import Signup from './features/auth/Signup'
 import Signin from './features/auth/Signin'
 import Auth from './pages/Auth'
 import Profile from './pages/Profile'
+import Wishlist from './pages/WishlistPage'
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
         </Route>
         <Route path="/place-order" element={<PlaceOrder/>} />
         <Route path="/orders" element={<Orders/>} /> 
+        <Route path="/wishlist" element={<Wishlist/>} />
       </Routes>
       <Footer/>
     </div>

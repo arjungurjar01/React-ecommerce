@@ -8,10 +8,14 @@ import { IoMenu } from "react-icons/io5";
 import { IoArrowBackSharp } from "react-icons/io5";
 import { ShopContext } from '../context/ShopContext.jsx';
 import { useAuth } from '../context/AuthContext.jsx';
+import { FaRegHeart } from "react-icons/fa";
+import { useWishList } from '../context/WishListContext.jsx';
+
 
 function Navbar() {
     const [visible,setVisible] = useState(false);
     const {setShowSearch,getCartCount} = useContext(ShopContext)
+    const {getTotalWishlistItems} = useWishList();
     const {session} = useAuth();
     const user = session?.user ;
     const avatar = user?.user_metadata?.avatar_url ;
@@ -49,11 +53,27 @@ function Navbar() {
          <hr className='w-2/4 border-none h-[1.5px] bg-gray-700 self-center hidden' />
 
          </NavLink>
+         
        </ul>
 
        <div className='flex items-center gap-6'>
         <FiSearch onClick={()=>setShowSearch(true)} className='text-2xl  cursor-pointer' />
+ 
+ {/* wishlist */}
+         <Link to='/wishlist' className='flex flex-col text-center gap-1 relative'> <FaRegHeart className='text-2xl text-gray-800 hover:text-gray-600'/>
+          <p className='absolute right-[-6px] bottom-[-4px] bg-black rounded-full text-white text-center w-4 leading-4 aspect-square text-[10px]'>
+           {getTotalWishlistItems} 
+        </p>
+  </Link>
+  {/* cart */}
+        <Link to='/cart' className='relative'>
+        <SlHandbag className='text-2xl'/>
+        <p className='absolute right-[-5px] bottom-[-5px] bg-black rounded-full text-white text-center w-4 leading-4 aspect-square text-[10px]'>
+           {getCartCount()} 
+        </p>
+        </Link>
 
+        {/* profile */}
         <div className='group relative '>
        <Link to={'/profile'}>  {
         !avatar ? ( firstLetter && (<p className='bg-yellow-300 text-lg font-normal rounded-full  px-2 lg:px-3 lg:py-1'>{firstLetter}</p>) || <CgProfile className='text-2xl text-black' />)  : <img className='rounded-full w-24 sm:w-auto md:w-auto lg:w-10 object-cover' src={`${session?.user?.user_metadata?.avatar_url}`} alt="avatar" />
@@ -65,14 +85,8 @@ function Navbar() {
             </div>
         </div>
         </div>
-
-        <Link to='/cart' className='relative'>
-        <SlHandbag className='text-2xl'/>
-        <p className='absolute right-[-5px] bottom-[-5px] bg-black rounded-full text-white text-center w-4 leading-4 aspect-square text-[10px]'>
-           {getCartCount()} 
-        </p>
-        </Link>
-        <IoMenu onClick={()=>setVisible(true)} className='text-2xl cursor-pointer sm:hidden' />
+        {/* three lines for small screens */}
+        <IoMenu onClick={()=>setVisible(true)} className='text-2xl bg-red-500 cursor-pointer sm:hidden' />
        </div>
        {/* sidebar menu for small screen */}
        <div className={`absolute top-0 right-0 bottom-0 overflow-hidden bg-white transition-all ${visible ? 'w-full' : 'w-0'}`} >
