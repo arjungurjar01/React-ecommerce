@@ -19,7 +19,7 @@ function Signup() {
          const result = await signUpNewUser(email,password,name) ;
     
         if( result.success){
-          console.log(result);
+          // console.log(result);
           navigate('/')
         }
         } catch (error) {
@@ -36,20 +36,20 @@ function Signup() {
       }
   return (
     <>
-    <form onSubmit={handleSignUp} action="" className='flex flex-col items-center   w-[90%] sm:max-w-96 m-auto mt-14 gap-4 text-gray-800'>
+    <form onSubmit={handleSignUp} action="" className='flex flex-col items-center w-[90%] sm:max-w-96 mx-auto gap-4 text-gray-800'>
     <div className='inline-flex mt-10 items-center  gap-2 mb-2'>
       <p className='prata-regular text-3xl'> Sign Up </p>
       <hr className='h-[1.5px] w-8 bg-gray-800 border-none' />
     </div>
-    <input onChange={(e)=>setName(e.target.value)} type="text" className='w-full px-3 py-2 border border-gray-800' placeholder='Enter Name' required />
-    <input onChange={(e)=>setEmail(e.target.value)} type="email" className='w-full px-3 py-2 border border-gray-800' placeholder='Email Address' required/>
-    <input onChange={(e)=>setPassword(e.target.value)} type="password" className='w-full px-3 py-2 border border-gray-800' placeholder='Password'required />
+    <input onChange={(e)=>setName(e.target.value)} type="text" className='w-full px-3 py-2 border border-gray-400 rounded-lg' placeholder='Enter Name' required />
+    <input onChange={(e)=>setEmail(e.target.value)} type="email" className='w-full px-3 py-2 border border-gray-400 rounded-lg' placeholder='Email Address' required/>
+    <input onChange={(e)=>setPassword(e.target.value)} type="password" className='w-full px-3 py-2 border border-gray-400 rounded-lg' placeholder='Password'required />
     
     <div className='w-full justify-between flex text-sm mt-[-8px]'>
       <p className='cursor-pointer'>Forgot Your Password ?</p> 
       <p onClick={handleCurrentState} className='cursor-pointer'>Login Here</p>
     </div>
-    <button type='submit' className='bg-black text-white font-light px-8 py-2 mt-4'>sign Up</button>
+    <button type='submit' className='bg-black text-white font-light px-8 py-2 mt-4 rounded-lg'>sign Up</button>
   </form>
   </>
   )

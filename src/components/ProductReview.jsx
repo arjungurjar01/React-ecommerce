@@ -160,11 +160,11 @@ function ProductReview({productId}) {
 
     if (res.ok) {
       const data = await res.json();
-      console.log('review add info-',data);
+      // console.log('review add info-',data);
       setReviews(prev => [data.review,...prev]);
       fetchAllReviews();
     } else {
-      console.error('Failed to add review');
+      // console.error('Failed to add review');
     }
     
   };

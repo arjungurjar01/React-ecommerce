@@ -86,7 +86,7 @@ function Navbar() {
         </div>
         </div>
         {/* three lines for small screens */}
-        <IoMenu onClick={()=>setVisible(true)} className='text-2xl bg-red-500 cursor-pointer sm:hidden' />
+        <IoMenu onClick={()=>setVisible(true)} className='text-2xl cursor-pointer sm:hidden' /> 
        </div>
        {/* sidebar menu for small screen */}
        <div className={`absolute top-0 right-0 bottom-0 overflow-hidden bg-white transition-all ${visible ? 'w-full' : 'w-0'}`} >

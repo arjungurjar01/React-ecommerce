@@ -42,7 +42,7 @@ export const AuthProvider = ({children}) =>{
             console.log('error occur during signin :',error);
             return {success:false,error}
         }
-        console.log('sign in successfully:',data)
+        // console.log('sign in successfully:',data)
         return { success :true,data} ;
 
        } catch (error) {

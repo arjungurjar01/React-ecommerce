@@ -16,7 +16,7 @@ const handleSignIn  = async (e) =>{
   try {
     const result = await signInExistingUser(email,password);
     if(result.success){
-      console.log(result);
+      // console.log(result);
       navigate('/');
     }
   } catch (error) {
@@ -34,19 +34,19 @@ const handleSignIn  = async (e) =>{
 
   return (
     <>
-    <form onSubmit={handleSignIn} action="" className='flex flex-col items-center   w-[90%] sm:max-w-96 m-auto mt-14 gap-4 text-gray-800'>
+    <form onSubmit={handleSignIn} action="" className='flex flex-col items-center w-[90%] sm:max-w-96 m-auto gap-4 text-gray-800'>
     <div className='inline-flex mt-10 items-center  gap-2 mb-2'>
       <p className='prata-regular text-3xl'> Sign In </p>
       <hr className='h-[1.5px] w-8 bg-gray-800 border-none' />
     </div>
-    <input onChange={(e)=>setEmail(e.target.value)} type="email" className='w-full px-3 py-2 border border-gray-800' placeholder='Email Address' required/>
-    <input onChange={(e)=>setPassword(e.target.value)} type="password" className='w-full px-3 py-2 border border-gray-800' placeholder='Password'required />
+    <input onChange={(e)=>setEmail(e.target.value)} type="email" className='w-full px-3 py-2 border border-gray-400 rounded-lg' placeholder='Email Address' required/>
+    <input onChange={(e)=>setPassword(e.target.value)} type="password" className='w-full px-3 py-2 border border-gray-400 rounded-lg' placeholder='Password'required />
     
     <div className='w-full justify-between flex text-sm mt-[-8px]'>
       <p className='cursor-pointer'>Forgot Your Password ?</p>      
       <p onClick={handleCurrentState} className='cursor-pointer'>Create account</p>
     </div>
-    <button className='bg-black text-white font-light px-8 py-2 mt-4'>Login</button>
+    <button className='bg-black text-white font-light px-8 py-2 mt-4 rounded-lg'>Login</button>
   </form>
   </>
   )

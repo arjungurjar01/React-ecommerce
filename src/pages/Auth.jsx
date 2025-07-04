@@ -14,25 +14,27 @@ function Auth() {
  const navigate = useNavigate();
 
   const {session,googleAuth,currentState} = useAuth();
-  console.log(session);
-  console.log(email," ",password," ",name);
+  // console.log(session);
+  // console.log(email," ",password," ",name);
 
 
   const onSubmitHandler = async (event) =>{
      event.preventDefault();
   }
   return (
-    <div>
+    <div className='mt-16'>
+      <div className='bg-[#FAF9F5] sm:mx-20 md:mx-40 lg:mx-60 xl:mx-80 rounded-lg border shadow-sm'>
       <Outlet/>
-      <div className='flex items-center w-full md:w-1/2 lg:w-1/2  mx-auto justify-center gap-2 mt-4'>
+      <div className='flex items-center w-full md:w-1/2 lg:w-1/2 mx-auto justify-center gap-2'>
       <hr className='w-1/4' /> 
        <span>or</span>
        <hr className='w-1/4' /> 
       </div>
-      <div>
-      <button onClick={googleAuth} className='flex m-auto w-[90%] sm:max-w-96 justify-center items-center gap-2 text-black border border-gray-800 p-2  mt-6 bg-white'> 
+      <div className='mb-6'>
+      <button onClick={googleAuth} className='flex m-auto w-[90%] sm:max-w-96 justify-center items-center gap-2 text-black border border-gray-800 rounded-lg p-2 mt-6 bg-white'> 
           <span className='text-2xl'> <FcGoogle /> </span>
-          <span> {currentState === 'Sign In' ? 'Sign In' : 'Sign Up'} with Google</span> </button>
+          <span> Continue with Google</span> </button>
+      </div>
       </div>
     </div>
   )

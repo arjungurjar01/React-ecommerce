@@ -34,7 +34,7 @@ function Wishlist() {
         </>
       ) : (
         <ul className="space-y-2">
-          {items.map((item) => (
+          {items.length > 0 && items.map((item) => (
             <div
               className="py-4 border-t border-b text-gray-700 grid grid-cols-[4fr_0.5fr_0.5fr] sm:grid-cold-[4fr_2fr_0.5fr] items-center gap-4"
               key={item._id}

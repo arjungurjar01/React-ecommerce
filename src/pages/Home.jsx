@@ -8,7 +8,6 @@ import NewsLatterBox from '../components/NewsLatterBox'
 function Home() {
   return (
     <div className=''>
-      
         <Hero />
         <LatestCollection/>
         <BestSeller/>

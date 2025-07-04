@@ -23,8 +23,8 @@ function LatestCollection() {
       {/* Rendering products */}
 
       <div className='grid grid-cols-1 sm:grid-cols-3 md:grid-cols-5 lg-grid-cols-6 gap-4 gap-y-6'>
-        {latestProducts.map((items,index)=>(
-            <ProductItem key={index} id={items._id} image={items.image} name={items.name} price={items.price} />
+        {latestProducts.map((item,index)=>(
+            <ProductItem key={item._id} _id={item._id} image={item.image} name={item.name} price={item.price} product={item} />
         ))}
       </div>
 
