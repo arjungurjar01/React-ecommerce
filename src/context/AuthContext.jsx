@@ -7,6 +7,12 @@ export const AuthProvider = ({children}) =>{
     const [currentState,setCurrentState] = useState('Sign Up');
     const[session,setSession] = useState('90');
     const user = session?.user ;
+    const isProd = import.meta.env.MODE === "production";
+    const redirectTo = isProd 
+  ? "https://react-ecommerce-preview.vercel.app"
+  : "http://localhost:5174";
+
+
     //signup
     const signUpNewUser = async(email,password,name)=>{
         try {
@@ -55,7 +61,7 @@ export const AuthProvider = ({children}) =>{
             await supabaseClient.auth.signInWithOAuth({
             provider: "google" ,
                 options:{
-                redirectTo:'/'   
+                redirectTo  
                 }
            })  
         } catch (error) {
