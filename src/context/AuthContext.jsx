@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { supabaseClient } from "../supabaseClient";
+import { ShopContext } from "./ShopContext";
 
 export const AuthContext = createContext() ;
 
@@ -8,6 +9,7 @@ export const AuthProvider = ({children}) =>{
     const [loading, setLoading] = useState(true); 
     const[session,setSession] = useState('90');
     const user = session?.user ;
+    const userId = user?.id || "guest" ;
     const isProd = import.meta.env.MODE === "production";
     const redirectTo = isProd 
   ? "https://react-ecommerce-preview.vercel.app"
@@ -98,7 +100,7 @@ export const AuthProvider = ({children}) =>{
     
 
     return (
-        <AuthContext.Provider value={{user,loading,currentState,setCurrentState,session,signUpNewUser , signInExistingUser , signOut ,googleAuth}}>
+        <AuthContext.Provider value={{user,userId,loading,currentState,setCurrentState,session,signUpNewUser , signInExistingUser , signOut ,googleAuth}}>
             {children}
         </AuthContext.Provider>
     )

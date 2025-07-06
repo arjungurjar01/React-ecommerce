@@ -14,13 +14,7 @@ function Auth() {
  const navigate = useNavigate();
 
   const {session,googleAuth,currentState} = useAuth();
-  // console.log(session);
-  // console.log(email," ",password," ",name);
 
-
-  const onSubmitHandler = async (event) =>{
-     event.preventDefault();
-  }
   return (
     <div className='mt-16'>
       <div className='bg-[#FAF9F5] sm:mx-20 md:mx-40 lg:mx-60 xl:mx-80 rounded-lg border shadow-sm'>
