@@ -10,10 +10,15 @@ const ShopContextProvider = (props) =>{
     const delivery_fee = 20 ;
     const [search,setSearch] = useState('');
     const[showSearch,setShowSearch] = useState(false);
-    const[cartItems,setCartItems] = useState({});
+    const[cartItems,setCartItems] = useState(() => {
+    const savedCart = localStorage.getItem('cart');
+    return savedCart ? JSON.parse(savedCart) : {};
+  });
     const navigate = useNavigate();
 
-    
+     useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(cartItems));
+  }, [cartItems]);
 
     const addToCart = async(itemId,size)=>{
         if(!size){

@@ -5,6 +5,7 @@ export const AuthContext = createContext() ;
 
 export const AuthProvider = ({children}) =>{
     const [currentState,setCurrentState] = useState('Sign Up');
+    const [loading, setLoading] = useState(true); 
     const[session,setSession] = useState('90');
     const user = session?.user ;
     const isProd = import.meta.env.MODE === "production";
@@ -92,11 +93,12 @@ export const AuthProvider = ({children}) =>{
         supabaseClient.auth.onAuthStateChange((_event,session)=>{
             setSession(session)
         })
+        setLoading(false);
     },[])
     
 
     return (
-        <AuthContext.Provider value={{user,currentState,setCurrentState,session,signUpNewUser , signInExistingUser , signOut ,googleAuth}}>
+        <AuthContext.Provider value={{user,loading,currentState,setCurrentState,session,signUpNewUser , signInExistingUser , signOut ,googleAuth}}>
             {children}
         </AuthContext.Provider>
     )

@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useReducer } from 'react'
+import React, { createContext, useContext, useEffect, useReducer } from 'react'
 
 
 export const WishListContext = createContext();
@@ -25,9 +25,14 @@ export function wishlistReducer(state,action){
 }
 
 export const WishListProvider = ({children}) => {
-    const [state,dispatch] = useReducer(wishlistReducer,initialState);
+    const persistedState = JSON.parse(localStorage.getItem('wishlist')) || initialState;
+    const [state,dispatch] = useReducer(wishlistReducer,persistedState);
     
-    const getTotalWishlistItems = state.items.length ;
+     useEffect(() => {
+    localStorage.setItem('wishlist', JSON.stringify(state));
+  }, [state]);
+
+    const getTotalWishlistItems = state.items.length;
   return ( 
 
     <WishListContext.Provider value={{state,dispatch,getTotalWishlistItems}}>

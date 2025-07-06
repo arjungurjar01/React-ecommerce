@@ -18,6 +18,7 @@ import Signin from './features/auth/Signin'
 import Auth from './pages/Auth'
 import Profile from './pages/Profile'
 import Wishlist from './pages/WishlistPage'
+import AuthProtector from './features/auth/AuthProtector'
 
 function App() {
   return (
@@ -38,7 +39,7 @@ function App() {
         <Route path="signup" element={<Signup />} />
         </Route>
         <Route path="/place-order" element={<PlaceOrder/>} />
-        <Route path="/orders" element={<Orders/>} /> 
+        <Route path="/orders" element={<AuthProtector> <Orders/> </AuthProtector>} /> 
         <Route path="/wishlist" element={<Wishlist/>} />
       </Routes>
       <Footer/>
